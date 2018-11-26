@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MikiDB_GUI.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -55,14 +58,50 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SQL\SQLParser.cs" />
+    <Compile Include="SQL\Stmt\BaseSQLStmt.cs" />
+    <Compile Include="SQL\Stmt\SQLCreateDatabase.cs" />
+    <Compile Include="SQL\Stmt\SQLCreateTable.cs" />
+    <Compile Include="SQL\Stmt\SQLDelete.cs" />
+    <Compile Include="SQL\Stmt\SQLDescribe.cs" />
+    <Compile Include="SQL\Stmt\SQLDropDatabase.cs" />
+    <Compile Include="SQL\Stmt\SQLDropTable.cs" />
+    <Compile Include="SQL\Stmt\SQLInsert.cs" />
+    <Compile Include="SQL\Stmt\SQLSelect.cs" />
+    <Compile Include="SQL\Stmt\SQLShowDatabases.cs" />
+    <Compile Include="SQL\Stmt\SQLShowTables.cs" />
+    <Compile Include="SQL\Stmt\SQLUpdate.cs" />
+    <Compile Include="SQL\Stmt\SQLUse.cs" />
+    <Compile Include="SQL\Stmt\StmtType.cs" />
+    <Compile Include="SQL\Stmt\WhereClause.cs" />
+    <Compile Include="SQL\Stmt\WhereConditionType.cs" />
+    <Compile Include="Utils\DbDataTypeExtension.cs" />
+    <Compile Include="Utils\EnumerableExtension.cs" />
+    <Compile Include="Utils\WhereConditionExt.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="API\Executor.cs" />
+    <Compile Include="API\Result.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CLI\Program.cs" />
+    <Compile Include="Core\ConsType.cs" />
+    <Compile Include="Core\Database.cs" />
+    <Compile Include="Core\DbDataType.cs" />
+    <Compile Include="Core\DbManager.cs" />
+    <Compile Include="Core\Table.cs" />
+    <Compile Include="Core\TbRow.cs" />
+    <Compile Include="Exceptions\BaseDbExc.cs" />
+    <Compile Include="Exceptions\DbNotSelectedExc.cs" />
+    <Compile Include="Exceptions\FeatureNotSupExc.cs" />
+    <Compile Include="Exceptions\NameConflictExc.cs" />
+    <Compile Include="Exceptions\NamedItemNotFoundExc.cs" />
+    <Compile Include="Exceptions\SyntaxErrorExc.cs" />
+    <Compile Include="Exceptions\TypeErrorExc.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
