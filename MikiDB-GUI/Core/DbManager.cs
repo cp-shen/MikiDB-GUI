@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +20,6 @@ namespace MikiDB.Core {
         public static DbManager Instance { get { return instance; } }
         static DbManager() { }
         private DbManager() {
-
         }
 
         private List<Database> _databases = new List<Database>();
@@ -72,6 +74,31 @@ namespace MikiDB.Core {
 
         public void DropDb(string name) {
             _databases.Remove(GetDbByName(name));
+        }
+
+        public void Serialize() {
+            IFormatter f = new BinaryFormatter();
+            Stream stream = new FileStream("data.mikidb", 
+                FileMode.Create, FileAccess.Write, FileShare.None);
+            f.Serialize(stream, _databases);
+            stream.Close();
+        }
+
+        public void Deserialize() {
+            if (!File.Exists("data.mikidb")) {
+                return;
+            }
+            //try {
+                IFormatter f = new BinaryFormatter();
+                Stream stream = new FileStream("data.mikidb",
+                    FileMode.Open, FileAccess.Read, FileShare.Read);
+                var dbs = (List<Database>) f.Deserialize(stream);
+                dbs.ForEach(db => db.Manager = this);
+                _databases = dbs;
+            //}
+            //catch (Exception) {
+
+            //}
         }
     }
 }

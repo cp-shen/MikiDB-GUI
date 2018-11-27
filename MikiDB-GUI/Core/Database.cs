@@ -7,8 +7,21 @@ using MikiDB.Exceptions;
 using MikiDB.API;
 
 namespace MikiDB.Core {
+    [Serializable]
     public class Database {
-        public DbManager Manager { get; }
+        [NonSerialized]
+        private DbManager _manager;
+        public DbManager Manager {
+            get { return _manager; }
+            set {
+                foreach (string name in value.GetDbNames()) {
+                    if(name == _dbName) {
+                        throw new NameConflictExc(name);
+                    }
+                }
+                _manager = value;
+            }
+        }
         private readonly List<Table> _tables;
         private string _dbName;
         public string DbName {

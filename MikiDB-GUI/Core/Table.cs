@@ -8,6 +8,7 @@ using MikiDB.Utils;
 using MikiDB.SQL.Stmt;
 
 namespace MikiDB.Core {
+    [Serializable]
     public class Table {
         public Database Db { get; }
         private string _tbName;

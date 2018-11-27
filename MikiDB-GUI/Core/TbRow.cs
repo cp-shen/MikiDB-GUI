@@ -7,6 +7,7 @@ using MikiDB.Exceptions;
 using MikiDB.Utils;
 
 namespace MikiDB.Core {
+    [Serializable]
     public class TbRow {
         public Table Table { get; }
         private readonly Dictionary<string, object> _kvs;
@@ -48,6 +49,10 @@ namespace MikiDB.Core {
 
         public Dictionary<string, object> CopyData() {
             return new Dictionary<string, object>(_kvs);
+        }
+
+        public Dictionary<string, object> DataCopy {
+            get { return CopyData(); }
         }
     }
 }

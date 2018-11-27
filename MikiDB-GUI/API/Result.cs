@@ -40,10 +40,10 @@ namespace MikiDB.API {
             string divider = "-----------------------------------------";
 
             if (Succeeded) {
-                str += "operation succeeded";
+                str += "OK";
             }
             else {
-                str += "operation failed";
+                str += "Failed";
             }
             str += lb;
             if(CountAffected != 0) {
